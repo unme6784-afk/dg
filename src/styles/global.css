@@ -1,3 +1,6 @@
+/* 全局样式表：定义品牌色、页面基础排版以及常用布局工具类。
+   这里的 CSS 变量会被各个 Astro 组件复用，保证 LIMOVA 站点视觉一致。 */
+/* 设计令牌：将品牌主色、背景色和常用文字色集中为 CSS 变量，组件内通过 var() 复用。 */
 :root {
   --primary-purple: #b89ddb;
   --light-bg: #f5f0f0;
@@ -7,12 +10,14 @@
   --text-muted: #666666;
 }
 
+/* 基础重置：清除浏览器默认边距，并使用 border-box 让尺寸计算更直观。 */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* 字体栈：优先使用系统字体，减少额外字体资源加载并保持跨平台清晰度。 */
 html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -21,22 +26,26 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* 页面默认外观：统一浅色背景、深色正文和舒适的行高。 */
 body {
   background-color: var(--light-bg);
   color: var(--dark-text);
   line-height: 1.6;
 }
 
+/* 标题权重：让所有标题默认呈现更强的品牌视觉层级。 */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
+/* 链接基础样式：继承父级颜色并移除下划线，交互变化交给组件或 hover 控制。 */
 a {
   color: inherit;
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
+/* 按钮基础样式：继承字体、移除默认边框，并统一过渡动画。 */
 button {
   font-family: inherit;
   cursor: pointer;
@@ -44,25 +53,30 @@ button {
   transition: all 0.3s ease;
 }
 
+/* 表单输入：继承全站字体，避免不同浏览器使用不一致的默认输入字体。 */
 input {
   font-family: inherit;
 }
 
+/* 通用容器：限制内容最大宽度并在小屏幕保留左右安全边距。 */
 .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
+/* 通用网格工具类：为简单页面布局提供统一的 grid 和间距设置。 */
 .grid {
   display: grid;
   gap: 2rem;
 }
 
+/* 两列自适应网格：空间不足时自动降为单列，适合内容卡片。 */
 .grid-2 {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
+/* 四列自适应网格：用于商品或特性列表，保证卡片最小宽度。 */
 .grid-4 {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }

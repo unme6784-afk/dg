@@ -1,8 +1,12 @@
 ---
+// 页脚组件：收纳站点导航、品牌信息和社交媒体入口。
+// 链接当前使用锚点占位，接入真实页面时只需替换 href。
 ---
 
+<!-- 页脚：提供二级导航和社交入口，帮助用户在页面底部继续探索。 -->
 <footer class="footer">
   <div class="footer-container">
+    <!-- 页脚链接区：按主题分组，减少导航信息的认知负担。 -->
     <div class="footer-content">
       <div class="footer-section">
         <h4>LIMOVA</h4>
@@ -16,6 +20,7 @@
       </div>
     </div>
 
+    <!-- 社交媒体入口：保留 aria-label，确保图标链接对辅助技术可读。 -->
     <div class="footer-social">
       <a href="#instagram" aria-label="Instagram">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -44,6 +49,7 @@
 </footer>
 
 <style>
+  /* Footer 样式：控制页脚分栏、社交图标间距和移动端堆叠布局。 */
   .footer {
     background-color: var(--light-bg);
     border-top: 1px solid #e0e0e0;

@@ -1,4 +1,7 @@
 ---
+// 可复用的系列卡片组件：通过 Product 类型约束每个系列需要展示的字段。
+// 如果父组件没有传入 products，则使用 defaultProducts 作为默认展示数据。
+// 商品系列数据结构：确保每张卡片同时具备英文名、中文名、分类和背景色。
 export interface Product {
   id: string;
   name: string;
@@ -12,6 +15,7 @@ interface Props {
   products?: Product[];
 }
 
+// 默认商品系列：当父级没有传入 products 时，组件会渲染这组内置数据。
 const defaultProducts: Product[] = [
   {
     id: '1',
@@ -50,6 +54,7 @@ const defaultProducts: Product[] = [
 const { products = defaultProducts } = Astro.props;
 ---
 
+<!-- Tailwind 版本的系列展示：通过 products.map 将数据数组渲染为卡片列表。 -->
 <section class="py-20 px-6 bg-cream">
   <div class="max-w-7xl mx-auto">
     <div class="flex items-center justify-between mb-12">
@@ -61,6 +66,7 @@ const { products = defaultProducts } = Astro.props;
     </div>
 
     <div class="grid grid-cols-4 gap-6">
+      {/* 遍历每个产品系列，背景色由 product.bgColor 控制，文案来自数据对象。 */}
       {products.map((product) => (
         <div class={`collection-card ${product.bgColor} p-8 min-h-80`}>
           <!-- Product image placeholder -->

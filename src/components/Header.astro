@@ -1,12 +1,16 @@
 ---
+// 顶部导航组件：提供品牌标识、主导航和常用操作入口。
+// sticky 定位让导航在滚动时保持可见，提升长页面浏览体验。
 ---
 
+<!-- 顶部导航：承载全站最常用的跳转和操作入口。 -->
 <header class="header">
   <div class="header-container">
     <div class="logo">
       <h1>LIMOVA</h1>
     </div>
     
+    <!-- 主导航菜单：使用锚点占位，便于后续连接到对应页面区块。 -->
     <nav class="nav-menu">
       <a href="#shop">Shop</a>
       <a href="#collections">Collections</a>
@@ -15,6 +19,7 @@
       <a href="#help">Help</a>
     </nav>
     
+    <!-- 操作按钮组：搜索、账户和购物车图标统一放在右侧，保持电商站点习惯。 -->
     <div class="header-actions">
       <button class="icon-btn" aria-label="Search">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -41,6 +46,7 @@
 </header>
 
 <style>
+  /* Header 样式：sticky 固定顶部，并为导航 hover 与购物车徽标提供视觉反馈。 */
   .header {
     position: sticky;
     top: 0;

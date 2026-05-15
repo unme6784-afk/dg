@@ -1,6 +1,9 @@
 ---
+// 订阅组件：可通过 Props 自定义标题、中文说明、输入框占位和按钮文案。
+// 适合放在营销页或内容页底部，用于收集用户邮箱订阅意向。
 import Button from './Button.astro';
 
+// 组件 Props：允许调用方覆盖默认文案，提升订阅模块在不同页面的复用性。
 interface Props {
   heading?: string;
   headingZh?: string;
@@ -8,6 +11,7 @@ interface Props {
   ctaText?: string;
 }
 
+// 解构 Props 并设置默认值：没有传参时仍显示完整可用的订阅表单。
 const {
   heading = 'Join LIMOVA Club',
   headingZh = '订阅展示最新动向和重要优惠',
@@ -16,6 +20,7 @@ const {
 } = Astro.props;
 ---
 
+<!-- 订阅区块：用于收集用户邮箱，当前表单只负责前端展示和原生必填校验。 -->
 <section class="py-20 px-6 bg-cream">
   <div class="max-w-2xl mx-auto">
     <div class="flex items-center gap-4 mb-8">
