@@ -1,0 +1,87 @@
+---
+export interface Product {
+  id: string;
+  name: string;
+  nameZh: string;
+  category: string;
+  categoryZh: string;
+  bgColor: string;
+}
+
+interface Props {
+  products?: Product[];
+}
+
+const defaultProducts: Product[] = [
+  {
+    id: '1',
+    name: 'BUBBLE CLOG',
+    nameZh: '泡泡鞋系列',
+    category: 'Classic',
+    categoryZh: '经典款',
+    bgColor: 'bg-pink-light'
+  },
+  {
+    id: '2',
+    name: 'PLATFORM SANDAL',
+    nameZh: '厚底凉鞋',
+    category: 'Bold',
+    categoryZh: '厚底',
+    bgColor: 'bg-purple-light'
+  },
+  {
+    id: '3',
+    name: 'DUAL MODE SLIDE',
+    nameZh: '两穿拖鞋',
+    category: 'Versatile',
+    categoryZh: '多样',
+    bgColor: 'bg-cream'
+  },
+  {
+    id: '4',
+    name: 'FUN CHARM ACCESSORIES',
+    nameZh: '趣味饰花',
+    category: 'Accessories',
+    categoryZh: '配饰',
+    bgColor: 'bg-green-light'
+  }
+];
+
+const { products = defaultProducts } = Astro.props;
+---
+
+<section class="py-20 px-6 bg-cream">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex items-center justify-between mb-12">
+      <div>
+        <h2 class="text-4xl font-bold text-gray-900">Collections</h2>
+        <p class="text-lg text-gray-600">人气系列</p>
+      </div>
+      <a href="#" class="btn-primary">VIEW ALL</a>
+    </div>
+
+    <div class="grid grid-cols-4 gap-6">
+      {products.map((product) => (
+        <div class={`collection-card ${product.bgColor} p-8 min-h-80`}>
+          <!-- Product image placeholder -->
+          <div class="w-48 h-48 bg-gray-300 rounded-2xl flex items-center justify-center mb-4">
+            <span class="text-gray-500 text-sm">Product Image</span>
+          </div>
+          
+          <div class="text-center mt-auto">
+            <h3 class="text-sm font-bold text-gray-900 uppercase">{product.name}</h3>
+            <p class="text-xs text-gray-600">{product.nameZh}</p>
+            <p class="text-xs text-gray-500 mt-1">{product.category}</p>
+            <p class="text-xs text-gray-500">{product.categoryZh}</p>
+            
+            <div class="flex justify-center mt-4">
+              <svg class="w-4 h-4 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
