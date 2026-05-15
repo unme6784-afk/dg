@@ -1,0 +1,291 @@
+---
+---
+
+<div id="todo-app" class="min-h-screen bg-gradient-to-br from-purple-light to-cream py-12 px-6">
+  <div class="max-w-2xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-5xl font-bold text-gray-900 mb-4">My Tasks</h1>
+      <p class="text-lg text-gray-600">Stay organized with your to-do list</p>
+    </div>
+
+    <!-- Input Section -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+      <div class="flex gap-2">
+        <input
+          id="todo-input"
+          type="text"
+          placeholder="Add a new task..."
+          class="flex-1 px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-purple transition"
+        />
+        <button
+          id="add-btn"
+          class="btn-primary px-6 py-3"
+        >
+          <span>Add</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex gap-4 mb-8">
+      <button
+        data-filter="all"
+        class="px-6 py-2 rounded-full font-medium transition tab-active bg-purple text-white"
+      >
+        All
+      </button>
+      <button
+        data-filter="active"
+        class="px-6 py-2 rounded-full font-medium transition bg-gray-100 text-gray-600 hover:bg-gray-200"
+      >
+        Active
+      </button>
+      <button
+        data-filter="completed"
+        class="px-6 py-2 rounded-full font-medium transition bg-gray-100 text-gray-600 hover:bg-gray-200"
+      >
+        Completed
+      </button>
+    </div>
+
+    <!-- Task Stats -->
+    <div class="grid grid-cols-3 gap-4 mb-8">
+      <div class="bg-white rounded-lg p-4 text-center shadow">
+        <p class="text-3xl font-bold text-purple" id="total-count">0</p>
+        <p class="text-sm text-gray-600">Total Tasks</p>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow">
+        <p class="text-3xl font-bold text-green-500" id="completed-count">0</p>
+        <p class="text-sm text-gray-600">Completed</p>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow">
+        <p class="text-3xl font-bold text-orange-500" id="active-count">0</p>
+        <p class="text-sm text-gray-600">Active</p>
+      </div>
+    </div>
+
+    <!-- Task List -->
+    <div id="task-list" class="space-y-2">
+      <!-- Tasks will be inserted here -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="text-center py-12">
+      <svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+      </svg>
+      <p class="text-gray-500 text-lg">No tasks yet. Add one to get started!</p>
+    </div>
+
+    <!-- Clear Completed Button -->
+    <div class="mt-8 flex justify-center">
+      <button
+        id="clear-completed"
+        class="px-6 py-2 text-sm text-red-500 hover:text-red-700 transition font-medium"
+      >
+        Clear Completed Tasks
+      </button>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{}}>
+  const APP_KEY = 'limova_todos';
+  let todos = [];
+  let currentFilter = 'all';
+
+  // DOM Elements
+  const todoInput = document.getElementById('todo-input');
+  const addBtn = document.getElementById('add-btn');
+  const taskList = document.getElementById('task-list');
+  const emptyState = document.getElementById('empty-state');
+  const tabs = document.querySelectorAll('[data-filter]');
+  const clearCompletedBtn = document.getElementById('clear-completed');
+  const totalCount = document.getElementById('total-count');
+  const completedCount = document.getElementById('completed-count');
+  const activeCount = document.getElementById('active-count');
+
+  // Initialize
+  function init() {
+    loadTodos();
+    renderTodos();
+    attachEventListeners();
+  }
+
+  // Load todos from localStorage
+  function loadTodos() {
+    try {
+      const saved = localStorage.getItem(APP_KEY);
+      todos = saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      console.error('Error loading todos:', e);
+      todos = [];
+    }
+  }
+
+  // Save todos to localStorage
+  function saveTodos() {
+    try {
+      localStorage.setItem(APP_KEY, JSON.stringify(todos));
+    } catch (e) {
+      console.error('Error saving todos:', e);
+    }
+  }
+
+  // Add a new todo
+  function addTodo() {
+    const text = todoInput.value.trim();
+    if (!text) return;
+
+    const todo = {
+      id: Date.now(),
+      text,
+      completed: false,
+      createdAt: new Date().toISOString()
+    };
+
+    todos.unshift(todo);
+    saveTodos();
+    renderTodos();
+    todoInput.value = '';
+    todoInput.focus();
+  }
+
+  // Toggle todo completion
+  function toggleTodo(id) {
+    todos = todos.map(todo =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    );
+    saveTodos();
+    renderTodos();
+  }
+
+  // Delete a todo
+  function deleteTodo(id) {
+    todos = todos.filter(todo => todo.id !== id);
+    saveTodos();
+    renderTodos();
+  }
+
+  // Clear all completed todos
+  function clearCompleted() {
+    todos = todos.filter(todo => !todo.completed);
+    saveTodos();
+    renderTodos();
+  }
+
+  // Filter todos based on current filter
+  function getFilteredTodos() {
+    switch (currentFilter) {
+      case 'active':
+        return todos.filter(todo => !todo.completed);
+      case 'completed':
+        return todos.filter(todo => todo.completed);
+      default:
+        return todos;
+    }
+  }
+
+  // Update stats
+  function updateStats() {
+    const active = todos.filter(t => !t.completed).length;
+    const completed = todos.filter(t => t.completed).length;
+    totalCount.textContent = todos.length;
+    completedCount.textContent = completed;
+    activeCount.textContent = active;
+  }
+
+  // Render todos
+  function renderTodos() {
+    const filteredTodos = getFilteredTodos();
+    taskList.innerHTML = '';
+
+    if (todos.length === 0) {
+      emptyState.style.display = 'block';
+    } else {
+      emptyState.style.display = 'none';
+    }
+
+    filteredTodos.forEach(todo => {
+      const todoEl = document.createElement('div');
+      todoEl.className = 'bg-white rounded-lg p-4 flex items-center gap-4 shadow hover:shadow-md transition group';
+      todoEl.innerHTML = `
+        <input
+          type="checkbox"
+          ${todo.completed ? 'checked' : ''}
+          class="w-6 h-6 rounded cursor-pointer accent-purple"
+          data-id="${todo.id}"
+        />
+        <span class="flex-1 text-gray-900 ${todo.completed ? 'line-through text-gray-400' : ''} break-words">
+          ${escapeHtml(todo.text)}
+        </span>
+        <button
+          class="text-gray-300 hover:text-red-500 transition opacity-0 group-hover:opacity-100"
+          data-delete="${todo.id}"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+          </svg>
+        </button>
+      `;
+
+      const checkbox = todoEl.querySelector('input[type="checkbox"]');
+      checkbox.addEventListener('change', () => toggleTodo(todo.id));
+
+      const deleteBtn = todoEl.querySelector('[data-delete]');
+      deleteBtn.addEventListener('click', () => deleteTodo(todo.id));
+
+      taskList.appendChild(todoEl);
+    });
+
+    updateStats();
+  }
+
+  // Escape HTML to prevent XSS
+  function escapeHtml(text) {
+    const map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, m => map[m]);
+  }
+
+  // Attach event listeners
+  function attachEventListeners() {
+    addBtn.addEventListener('click', addTodo);
+    todoInput.addEventListener('keypress', e => {
+      if (e.key === 'Enter') addTodo();
+    });
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          t.classList.remove('bg-purple', 'text-white');
+          t.classList.add('bg-gray-100', 'text-gray-600');
+        });
+        tab.classList.remove('bg-gray-100', 'text-gray-600');
+        tab.classList.add('bg-purple', 'text-white');
+        currentFilter = tab.dataset.filter;
+        renderTodos();
+      });
+    });
+
+    clearCompletedBtn.addEventListener('click', () => {
+      if (todos.some(t => t.completed)) {
+        clearCompleted();
+      }
+    });
+  }
+
+  init();
+</script>
+
+<style>
+  .tab-active {
+    @apply bg-purple text-white;
+  }
+</style>
