@@ -1,8 +1,12 @@
 ---
+// 首页系列推荐区块：以静态卡片形式展示 LIMOVA 的四个主推产品系列。
+// 图片位置目前使用灰色占位块，方便后续替换为真实商品图。
 ---
 
+<!-- 系列推荐区块：展示首页重点产品线，帮助用户快速理解商品范围。 -->
 <section class="collections">
   <div class="container">
+    <!-- 区块头部：左侧是标题说明，右侧是查看全部的行动按钮。 -->
     <div class="collections-header">
       <div>
         <h2>Collections</h2>
@@ -17,6 +21,7 @@
       </button>
     </div>
 
+    <!-- 商品网格：四张卡片保持一致结构，便于后续替换为动态数据循环。 -->
     <div class="products-grid">
       <div class="product-card">
         <div class="product-image"></div>
@@ -78,6 +83,7 @@
 </section>
 
 <style>
+  /* Collections 样式：控制卡片网格、占位图片比例、按钮圆角和移动端列数。 */
   .collections {
     padding: 5rem 2rem;
     background-color: var(--light-bg);

@@ -1,6 +1,9 @@
 ---
+// 全站基础布局：统一引入全局样式，并输出标准 HTML 文档结构。
+// 页面标题由调用方传入，正文内容通过 <slot /> 注入。
 import '../styles/global.css';
 
+// 布局 Props：每个页面必须传入 title，用于设置浏览器标签页标题。
 interface Props {
   title: string;
 }
@@ -8,6 +11,7 @@ interface Props {
 const { title } = Astro.props;
 ---
 
+<!-- HTML 文档骨架：所有页面都会通过这个布局获得统一 head 和全局样式。 -->
 <!doctype html>
 <html lang="en">
   <head>
@@ -18,6 +22,7 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <style is:global>
+      /* 少量全局行为样式：平滑滚动并避免横向溢出造成页面抖动。 */
       html {
         scroll-behavior: smooth;
       }

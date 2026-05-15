@@ -1,8 +1,12 @@
 ---
+// 首屏英雄区块：承载品牌主标语、行动按钮、社交背书与主视觉。
+// 视觉图与头像目前为占位样式，便于在设计资源完成后直接替换。
 ---
 
+<!-- 首屏区域：作为用户进入首页后首先看到的品牌营销模块。 -->
 <section class="hero">
   <div class="hero-container">
+    <!-- 左侧文案区：包含主标题、中文副标题、品牌描述和主要行动按钮。 -->
     <div class="hero-content">
       <h2 class="hero-title">Step into <span class="italic">Curves</span><span class="asterisk">*</span></h2>
       <p class="hero-subtitle">踏出曲线的自由感</p>
@@ -30,6 +34,7 @@
       </div>
     </div>
 
+    <!-- 右侧视觉区：当前使用占位图和圆形徽章营造商品主视觉层次。 -->
     <div class="hero-visual">
       <div class="hero-image"></div>
       <div class="badge">
@@ -42,6 +47,7 @@
 </section>
 
 <style>
+  /* 组件样式：负责首屏布局、按钮动效、头像叠放和响应式尺寸调整。 */
   .hero {
     position: relative;
     background-color: var(--light-bg);
