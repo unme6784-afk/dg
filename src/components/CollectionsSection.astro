@@ -1,0 +1,201 @@
+---
+---
+
+<section class="collections">
+  <div class="container">
+    <div class="collections-header">
+      <div>
+        <h2>Collections</h2>
+        <p class="subtitle">系列推荐</p>
+      </div>
+      <button class="view-all-btn">
+        <span>VIEW ALL</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-image"></div>
+        <div class="product-info">
+          <p class="collection-name">BUBBLE CLOG</p>
+          <p class="product-name">泡泡无列</p>
+          <button class="product-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b89ddb" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image"></div>
+        <div class="product-info">
+          <p class="collection-name">PLATFORM SANDAL</p>
+          <p class="product-name">厚底凉鞋</p>
+          <button class="product-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b89ddb" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image"></div>
+        <div class="product-info">
+          <p class="collection-name">DUAL MODE SLIDE</p>
+          <p class="product-name">高厚拖鞋</p>
+          <button class="product-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b89ddb" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image"></div>
+        <div class="product-info">
+          <p class="collection-name">FUN CHARM ACCESSORIES</p>
+          <p class="product-name">趣味装饰</p>
+          <button class="product-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b89ddb" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .collections {
+    padding: 5rem 2rem;
+    background-color: var(--light-bg);
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .collections-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+  }
+
+  .collections-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .view-all-btn {
+    background-color: var(--primary-purple);
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .view-all-btn:hover {
+    background-color: #a682c5;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .product-card {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .product-image {
+    width: 100%;
+    height: 300px;
+    background-color: var(--gray-placeholder);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+
+  .product-info {
+    position: relative;
+  }
+
+  .collection-name {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+  }
+
+  .product-name {
+    font-size: 0.9rem;
+    color: var(--dark-text);
+    margin-bottom: 0.8rem;
+  }
+
+  .product-link {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--primary-purple);
+    display: flex;
+    align-items: center;
+  }
+
+  .product-link:hover {
+    transform: translateX(5px);
+  }
+
+  @media (max-width: 768px) {
+    .collections {
+      padding: 3rem 1rem;
+    }
+
+    .collections-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .collections-header h2 {
+      font-size: 1.8rem;
+    }
+
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .product-image {
+      height: 200px;
+    }
+  }
+</style>

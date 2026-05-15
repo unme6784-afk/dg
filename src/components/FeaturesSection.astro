@@ -1,0 +1,118 @@
+---
+---
+
+<section class="features">
+  <div class="container">
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#b89ddb" stroke-width="1.5">
+            <path d="M12 2L6 7v10a6 6 0 0 0 6 6 6 6 0 0 0 6-6V7l-6-5z"></path>
+          </svg>
+        </div>
+        <h3>Ultra Lightweight</h3>
+        <p class="en">轻盈无脑</p>
+        <p class="zh">每一步都轻盈在云尖上</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#b89ddb" stroke-width="1.5">
+            <path d="M12 2C7 2 3 6 3 11c0 7 9 11 9 11s9-4 9-11c0-5-4-9-9-9z"></path>
+          </svg>
+        </div>
+        <h3>Curve Design</h3>
+        <p class="en">曲线美学</p>
+        <p class="zh">妩媚造型，释放气性</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#b89ddb" stroke-width="1.5">
+            <path d="M12 2L7 7v10a5 5 0 0 0 10 0V7l-5-5z"></path>
+          </svg>
+        </div>
+        <h3>EVA Eco-Friendly</h3>
+        <p class="en">环保材质</p>
+        <p class="zh">柔软耐用，友好地球</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#b89ddb" stroke-width="1.5">
+            <path d="M12 2L8 7v10a4 4 0 0 0 8 0V7l-4-5z"></path>
+          </svg>
+        </div>
+        <h3>Water Ready</h3>
+        <p class="en">防水易清洗</p>
+        <p class="zh">雨天，洗漱都轻松</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .features {
+    padding: 5rem 2rem;
+    background-color: var(--light-bg);
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+  }
+
+  .feature-card {
+    text-align: center;
+    padding: 2rem 1rem;
+    transition: transform 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-10px);
+  }
+
+  .feature-icon {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .feature-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--dark-text);
+  }
+
+  .feature-card .en {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-card .zh {
+    font-size: 0.8rem;
+    color: #999;
+  }
+
+  @media (max-width: 768px) {
+    .features {
+      padding: 3rem 1rem;
+    }
+
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      padding: 1rem;
+    }
+  }
+</style>

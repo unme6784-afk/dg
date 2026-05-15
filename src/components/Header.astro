@@ -1,51 +1,148 @@
 ---
-import Button from './Button.astro';
 ---
 
-<header class="fixed top-0 left-0 right-0 bg-cream z-50 border-b border-gray-200">
-  <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-    <!-- Logo -->
-    <a href="/" class="text-2xl font-bold text-gray-900">LIMOVA</a>
-
-    <!-- Menu -->
-    <ul class="hidden md:flex gap-8 items-center justify-center flex-1">
-      <li><a href="#" class="text-sm font-medium text-gray-900 hover:text-purple transition">Shop</a></li>
-      <li><a href="#" class="text-sm font-medium text-gray-900 hover:text-purple transition">Collections</a></li>
-      <li><a href="#" class="text-sm font-medium text-gray-900 hover:text-purple transition">About Us</a></li>
-      <li><a href="#" class="text-sm font-medium text-gray-900 hover:text-purple transition">Journal</a></li>
-      <li><a href="#" class="text-sm font-medium text-gray-900 hover:text-purple transition">Help</a></li>
-    </ul>
-
-    <!-- Icons -->
-    <div class="flex items-center gap-4">
-      <!-- Search -->
-      <button class="text-gray-900 hover:text-purple transition">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+<header class="header">
+  <div class="header-container">
+    <div class="logo">
+      <h1>LIMOVA</h1>
+    </div>
+    
+    <nav class="nav-menu">
+      <a href="#shop">Shop</a>
+      <a href="#collections">Collections</a>
+      <a href="#about">About Us</a>
+      <a href="#journal">Journal</a>
+      <a href="#help">Help</a>
+    </nav>
+    
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
         </svg>
       </button>
-
-      <!-- Account -->
-      <button class="text-gray-900 hover:text-purple transition">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+      <button class="icon-btn" aria-label="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
         </svg>
       </button>
-
-      <!-- Cart -->
-      <button class="relative text-gray-900 hover:text-purple transition">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+      <button class="icon-btn cart-btn" aria-label="Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
         </svg>
-        <span class="absolute -top-2 -right-2 bg-purple text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">2</span>
+        <span class="cart-badge">0</span>
       </button>
     </div>
-  </nav>
+  </div>
 </header>
 
 <style>
-  header {
-    backdrop-filter: blur(10px);
-    background-color: rgba(245, 241, 237, 0.95);
+  .header {
+    position: sticky;
+    top: 0;
+    background-color: var(--light-bg);
+    border-bottom: 1px solid #e0e0e0;
+    z-index: 100;
+  }
+
+  .header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  .nav-menu {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-menu a {
+    font-size: 0.95rem;
+    color: var(--dark-text);
+    position: relative;
+  }
+
+  .nav-menu a:hover {
+    color: var(--primary-purple);
+  }
+
+  .nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-purple);
+    transition: width 0.3s ease;
+  }
+
+  .nav-menu a:hover::after {
+    width: 100%;
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .icon-btn {
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--dark-text);
+    position: relative;
+  }
+
+  .icon-btn:hover {
+    color: var(--primary-purple);
+  }
+
+  .cart-btn {
+    position: relative;
+  }
+
+  .cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--primary-purple);
+    color: white;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    .nav-menu {
+      gap: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .logo h1 {
+      font-size: 1.3rem;
+    }
   }
 </style>
