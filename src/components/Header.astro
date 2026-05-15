@@ -1,0 +1,51 @@
+---
+import Button from './Button.astro';
+---
+
+<header class="fixed top-0 left-0 right-0 bg-cream z-50 border-b border-gray-200">
+  <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="text-2xl font-bold text-gray-900">LIMOVA</a>
+
+    <!-- Menu -->
+    <ul class="hidden md:flex gap-8 items-center justify-center flex-1">
+      <li><a href="#" class="text-sm font-medium text-gray-900 hover:text-purple transition">Shop</a></li>
+      <li><a href="#" class="text-sm font-medium text-gray-900 hover:text-purple transition">Collections</a></li>
+      <li><a href="#" class="text-sm font-medium text-gray-900 hover:text-purple transition">About Us</a></li>
+      <li><a href="#" class="text-sm font-medium text-gray-900 hover:text-purple transition">Journal</a></li>
+      <li><a href="#" class="text-sm font-medium text-gray-900 hover:text-purple transition">Help</a></li>
+    </ul>
+
+    <!-- Icons -->
+    <div class="flex items-center gap-4">
+      <!-- Search -->
+      <button class="text-gray-900 hover:text-purple transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </button>
+
+      <!-- Account -->
+      <button class="text-gray-900 hover:text-purple transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+        </svg>
+      </button>
+
+      <!-- Cart -->
+      <button class="relative text-gray-900 hover:text-purple transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+        </svg>
+        <span class="absolute -top-2 -right-2 bg-purple text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">2</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<style>
+  header {
+    backdrop-filter: blur(10px);
+    background-color: rgba(245, 241, 237, 0.95);
+  }
+</style>
